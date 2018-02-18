@@ -11,7 +11,7 @@ import {Location} from '@angular/common';
 })
 export class HeroDetailsComponent implements OnInit {
 
-  hero: Hero;
+  @Input() hero: Hero;
 
   constructor(private route: ActivatedRoute,
               private heroService: HeroService,
@@ -29,6 +29,10 @@ export class HeroDetailsComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  updateHero(hero: Hero): void {
+    this.heroService.updateHero(hero).subscribe(data => this.goBack());
   }
 
 }
